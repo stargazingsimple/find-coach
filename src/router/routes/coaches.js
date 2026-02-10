@@ -16,10 +16,12 @@ export default [
     name: "coach",
     path: "/coaches/:id",
     component: CoachDetails,
-  },
-  {
-    name: "coach-contact",
-    path: "/coaches/:id/contact",
-    component: CoachContact,
+    children: [
+      {
+        name: "coach-contact",
+        path: "contact",
+        component: CoachContact,
+      },
+    ],
   },
 ];
