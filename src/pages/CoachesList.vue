@@ -5,5 +5,6 @@ export default {
 </script>
 
 <template>
-  <h1>Coaches List</h1>
+  <section>FILTER</section>
+  <section>COACHES LIST</section>
 </template>
