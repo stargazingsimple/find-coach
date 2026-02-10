@@ -1,5 +1,7 @@
+import CoachRegistration from "@/pages/CoachRegistration.vue";
+
 export default {
   name: "register",
   path: "/register",
-  component: null,
+  component: CoachRegistration,
 };
