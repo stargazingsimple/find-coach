@@ -1,3 +1,7 @@
+import CoachesList from "@/pages/CoachesList.vue";
+import CoachDetails from "@/pages/CoachDetails.vue";
+import CoachContact from "@/pages/CoachContact.vue";
+
 export default [
   {
     path: "/",
@@ -6,16 +10,16 @@ export default [
   {
     name: "coaches",
     path: "/coaches",
-    component: null,
+    component: CoachesList,
   },
   {
     name: "coach",
     path: "/coaches/:id",
-    component: null,
+    component: CoachDetails,
   },
   {
     name: "coach-contact",
     path: "/coaches/:id/contact",
-    component: null,
+    component: CoachContact,
   },
 ];
