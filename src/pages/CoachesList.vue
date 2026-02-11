@@ -3,19 +3,62 @@ import { mapGetters, mapState } from "vuex";
 import CoachItem from "@/components/coaches/CoachItem.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
+import BaseCheckboxFilter from "@/components/ui/BaseCheckboxFilter.vue";
 
 export default {
   name: "CoachesList",
-  components: { BaseButton, CoachItem, BaseCard },
+  components: {
+    BaseCheckboxFilter,
+    BaseButton,
+    CoachItem,
+    BaseCard,
+  },
+  data() {
+    return {
+      filterOptions: [
+        {
+          id: "frontend",
+          label: "Frontend",
+          value: true,
+        },
+        {
+          id: "backend",
+          label: "Backend",
+          value: true,
+        },
+        {
+          id: "career",
+          label: "Career",
+          value: true,
+        },
+      ],
+    };
+  },
   computed: {
     ...mapState("coaches", ["coaches"]),
     ...mapGetters("coaches", ["hasCoaches"]),
+  },
+  methods: {
+    changeFilter({ key, value }) {
+      const option = this.filterOptions.find(({ id }) => id === key);
+
+      if (option) {
+        option.value = value;
+      }
+    },
   },
 };
 </script>
 
 <template>
-  <section>FILTER</section>
+  <base-checkbox-filter
+    :filter-options="filterOptions"
+    @change-filter="changeFilter"
+  >
+    <template #title>
+      <h2>Find Your Coach</h2>
+    </template>
+  </base-checkbox-filter>
   <section>
     <base-card>
       <div class="controls">
@@ -48,5 +91,9 @@ ul {
 .controls {
   display: flex;
   justify-content: space-between;
+}
+
+h2 {
+  margin: 0.5rem 0;
 }
 </style>
