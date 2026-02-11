@@ -1,6 +1,10 @@
 <script>
+import BaseButton from "@/components/ui/BaseButton.vue";
+import BaseBadge from "@/components/ui/BaseBadge.vue";
+
 export default {
   name: "CoachItem",
+  components: { BaseBadge, BaseButton },
   props: {
     id: {
       type: String,
@@ -31,11 +35,13 @@ export default {
     <h3>{{ firstName }} {{ lastName }}</h3>
     <h4>$ {{ hourlyRate }}/hour</h4>
     <div>
-      <span v-for="area in areas" :key="area">{{ area }}</span>
+      <base-badge v-for="area in areas" :key="area" :type="area" />
     </div>
     <div class="actions">
-      <router-link :to="`/coaches/${id}/contact`">Contact</router-link>
-      <router-link :to="`/coaches/${id}`">View Details</router-link>
+      <base-button link :path="`/coaches/${id}/contact`" mode="outline">
+        Contact
+      </base-button>
+      <base-button link :path="`/coaches/${id}`">View Details</base-button>
     </div>
   </li>
 </template>
