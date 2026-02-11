@@ -23,5 +23,6 @@ export default [
         component: CoachContact,
       },
     ],
+    props: true,
   },
 ];
