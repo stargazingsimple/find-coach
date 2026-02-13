@@ -37,6 +37,17 @@ export default {
   computed: {
     ...mapState("coaches", ["coaches"]),
     ...mapGetters("coaches", ["hasCoaches"]),
+    activeFilters() {
+      return this.filterOptions.reduce(
+        (acc, { id, value }) => (value ? [...acc, id] : acc),
+        [],
+      );
+    },
+    filteredCoaches() {
+      return this.coaches.filter(({ areas }) => {
+        return areas.some((area) => this.activeFilters.includes(area));
+      });
+    },
   },
   methods: {
     changeFilter({ key, value }) {
@@ -67,7 +78,13 @@ export default {
       </div>
       <ul v-if="hasCoaches">
         <coach-item
-          v-for="{ id, firstName, lastName, areas, hourlyRate } in coaches"
+          v-for="{
+            id,
+            firstName,
+            lastName,
+            areas,
+            hourlyRate,
+          } in filteredCoaches"
           :key="id"
           :id="id"
           :first-name="firstName"
