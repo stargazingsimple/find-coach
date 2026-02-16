@@ -1,3 +1,5 @@
+const ADD_COACH = "ADD_COACH";
+
 export default {
   namespaced: true,
   state() {
@@ -24,9 +26,23 @@ export default {
       ],
     };
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    [ADD_COACH]({ coaches }, payload) {
+      coaches.push(payload);
+    },
+  },
+  actions: {
+    addCoach({ commit, rootState }, payload) {
+      const coach = {
+        ...payload,
+        id: rootState.auth.userId,
+      };
+      commit(ADD_COACH, coach);
+    },
+  },
   getters: {
     hasCoaches: (state) => !!state.coaches?.length,
+    isCoach: ({ coaches }, _, { auth }) =>
+      coaches.some(({ id }) => id === auth.userId),
   },
 };
