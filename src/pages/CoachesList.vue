@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     ...mapState("coaches", ["coaches"]),
-    ...mapGetters("coaches", ["hasCoaches"]),
+    ...mapGetters("coaches", ["hasCoaches", "isCoach"]),
     activeFilters() {
       return this.filterOptions.reduce(
         (acc, { id, value }) => (value ? [...acc, id] : acc),
@@ -74,7 +74,9 @@ export default {
     <base-card>
       <div class="controls">
         <base-button mode="outline">Refresh</base-button>
-        <base-button link path="/register">Register as Coach</base-button>
+        <base-button v-if="!isCoach" link path="/register">
+          Register as Coach
+        </base-button>
       </div>
       <ul v-if="hasCoaches">
         <coach-item

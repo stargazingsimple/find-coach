@@ -14,6 +14,7 @@ export default {
       default: "Submit",
     },
   },
+  emits: ["submit"],
   data() {
     return {
       formData: {},
@@ -32,7 +33,7 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log(this.formData);
+      this.$emit("submit", this.formData);
       this.resetForm();
     },
     resetForm() {

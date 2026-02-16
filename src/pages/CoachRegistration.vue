@@ -1,4 +1,5 @@
 <script>
+import { mapActions } from "vuex";
 import BaseForm from "@/components/ui/BaseForm.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
 
@@ -8,10 +9,10 @@ export default {
   data() {
     return {
       fields: [
-        { type: "text", id: "first-name", label: "Firstname" },
-        { type: "text", id: "last-name", label: "Lastname" },
+        { type: "text", id: "firstName", label: "Firstname" },
+        { type: "text", id: "lastName", label: "Lastname" },
         { type: "textarea", id: "description", label: "Description" },
-        { type: "number", id: "hourly-rate", label: "Hourly rate" },
+        { type: "number", id: "hourlyRate", label: "Hourly rate" },
         {
           type: "options",
           id: "areas",
@@ -37,6 +38,13 @@ export default {
       ],
     };
   },
+  methods: {
+    ...mapActions("coaches", ["addCoach"]),
+    onAddCoach(coach) {
+      this.addCoach(coach);
+      this.$router.replace({ name: "coaches" });
+    },
+  },
 };
 </script>
 
@@ -44,7 +52,11 @@ export default {
   <section>
     <base-card>
       <h2>Register as a coach now!</h2>
-      <base-form :fields="fields" submit-button-text="Register!" />
+      <base-form
+        :fields="fields"
+        submit-button-text="Register!"
+        @submit="onAddCoach"
+      />
     </base-card>
   </section>
 </template>
