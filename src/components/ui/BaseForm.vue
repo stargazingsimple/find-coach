@@ -100,7 +100,7 @@ export default {
       >
         <label :for="field.id">{{ field.label }}</label>
         <input
-          type="number"
+          :type="field.type"
           :id="field.id"
           v-model.number="formData[field.id]"
           @blur="validateField(field.id)"
@@ -138,7 +138,7 @@ export default {
       >
         <label :for="field.id">{{ field.label }}</label>
         <input
-          type="text"
+          :type="field.type"
           :id="field.id"
           v-model.trim="formData[field.id]"
           @blur="validateField(field.id)"
