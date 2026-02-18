@@ -13,11 +13,16 @@ export default {
       type: String,
       default: "Submit",
     },
+    validationSchema: {
+      type: Object,
+      required: true,
+    },
   },
   emits: ["submit"],
   data() {
     return {
       formData: {},
+      validationData: {},
     };
   },
   created() {
@@ -32,12 +37,36 @@ export default {
     });
   },
   methods: {
-    submitForm() {
-      this.$emit("submit", this.formData);
-      this.resetForm();
+    async submitForm() {
+      const isValid = await this.validateForm();
+      if (isValid) {
+        this.$emit("submit", this.formData);
+      }
     },
-    resetForm() {
-      this.formData = {};
+    async validateForm() {
+      this.validationData = {};
+      try {
+        await this.validationSchema.validate(this.formData, {
+          abortEarly: false,
+        });
+        return true;
+      } catch (error) {
+        error.inner.forEach(({ path, message }) => {
+          this.validationData[path] = message;
+        });
+        return false;
+      }
+    },
+    async validateField(fieldId) {
+      try {
+        await this.validationSchema.validateAt(fieldId, this.formData);
+        delete this.validationData[fieldId];
+      } catch (error) {
+        this.validationData = {
+          ...this.validationData,
+          [fieldId]: error.message,
+        };
+      }
     },
   },
 };
@@ -49,14 +78,24 @@ export default {
       <div
         v-if="field.type === 'textarea'"
         class="form-control"
+        :class="{ invalid: this.validationData[field.id] }"
         :key="field.id"
       >
         <label :for="field.id">{{ field.label }}</label>
-        <textarea rows="5" :id="field.id" v-model.trim="formData[field.id]" />
+        <textarea
+          rows="5"
+          :id="field.id"
+          v-model.trim="formData[field.id]"
+          @blur="validateField(field.id)"
+        />
+        <p v-if="this.validationData[field.id]" class="error-message">
+          {{ this.validationData[field.id] }}
+        </p>
       </div>
       <div
         v-else-if="field.type === 'number'"
         class="form-control"
+        :class="{ invalid: this.validationData[field.id] }"
         :key="field.id"
       >
         <label :for="field.id">{{ field.label }}</label>
@@ -64,11 +103,16 @@ export default {
           type="number"
           :id="field.id"
           v-model.number="formData[field.id]"
+          @blur="validateField(field.id)"
         />
+        <p v-if="this.validationData[field.id]" class="error-message">
+          {{ this.validationData[field.id] }}
+        </p>
       </div>
       <div
         v-else-if="field.type === 'options'"
         class="form-control"
+        :class="{ invalid: this.validationData[field.id] }"
         :key="field.id"
       >
         <h3>{{ field.label }}</h3>
@@ -78,13 +122,30 @@ export default {
             :id="id"
             :value="value"
             v-model="formData[field.id]"
+            @blur="validateField(field.id)"
           />
           <label :for="id">{{ label }}</label>
         </div>
+        <p v-if="this.validationData[field.id]" class="error-message">
+          {{ this.validationData[field.id] }}
+        </p>
       </div>
-      <div v-else class="form-control" :key="field.id">
+      <div
+        v-else
+        class="form-control"
+        :class="{ invalid: this.validationData[field.id] }"
+        :key="field.id"
+      >
         <label :for="field.id">{{ field.label }}</label>
-        <input type="text" :id="field.id" v-model.trim="formData[field.id]" />
+        <input
+          type="text"
+          :id="field.id"
+          v-model.trim="formData[field.id]"
+          @blur="validateField(field.id)"
+        />
+        <p v-if="this.validationData[field.id]" class="error-message">
+          {{ this.validationData[field.id] }}
+        </p>
       </div>
     </template>
     <base-button>{{ submitButtonText }}</base-button>
@@ -138,8 +199,11 @@ h3 {
   font-size: 1rem;
 }
 
-.invalid label {
+.error-message {
   color: red;
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .invalid input,
