@@ -1,5 +1,6 @@
 <script>
 import { mapActions } from "vuex";
+import validationSchema from "@/utils/validation/schemas/coach.js";
 import BaseForm from "@/components/ui/BaseForm.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
 
@@ -38,6 +39,11 @@ export default {
       ],
     };
   },
+  computed: {
+    validationSchema() {
+      return validationSchema;
+    },
+  },
   methods: {
     ...mapActions("coaches", ["addCoach"]),
     onAddCoach(coach) {
@@ -54,6 +60,7 @@ export default {
       <h2>Register as a coach now!</h2>
       <base-form
         :fields="fields"
+        :validation-schema="validationSchema"
         submit-button-text="Register!"
         @submit="onAddCoach"
       />
