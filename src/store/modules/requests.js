@@ -22,6 +22,9 @@ export default {
     },
   },
   getters: {
-    hasRequests: ({ requests }) => !!requests?.length,
+    requestsByCoach: ({ requests }, _, { auth }) => {
+      return requests.filter(({ coachId }) => coachId === auth.userId);
+    },
+    hasRequestsByCoach: (_, { requestsByCoach }) => !!requestsByCoach?.length,
   },
 };
