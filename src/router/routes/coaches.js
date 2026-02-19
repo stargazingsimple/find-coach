@@ -21,6 +21,7 @@ export default [
         name: "coach-contact",
         path: "contact",
         component: CoachContact,
+        props: true,
       },
     ],
     props: true,
