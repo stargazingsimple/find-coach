@@ -21,4 +21,7 @@ export default {
       commit(ADD_REQUEST, request);
     },
   },
+  getters: {
+    hasRequests: ({ requests }) => !!requests?.length,
+  },
 };

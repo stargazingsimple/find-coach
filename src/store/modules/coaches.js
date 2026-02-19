@@ -41,7 +41,7 @@ export default {
     },
   },
   getters: {
-    hasCoaches: (state) => !!state.coaches?.length,
+    hasCoaches: ({ coaches }) => !!coaches?.length,
     isCoach: ({ coaches }, _, { auth }) =>
       coaches.some(({ id }) => id === auth.userId),
   },
