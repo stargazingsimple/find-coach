@@ -1,10 +1,17 @@
 <script>
+import { mapActions } from "vuex";
 import validationSchema from "@/utils/validation/schemas/contact.js";
 import BaseForm from "@/components/ui/BaseForm.vue";
 
 export default {
   name: "CoachContact",
   components: { BaseForm },
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       fields: [
@@ -27,8 +34,13 @@ export default {
     },
   },
   methods: {
-    contact(formData) {
-      console.log(formData);
+    ...mapActions("requests", ["addRequest"]),
+    onAddRequest(formData) {
+      this.addRequest({
+        ...formData,
+        coachId: this.id,
+      });
+      this.$router.replace({ name: "coaches" });
     },
   },
 };
@@ -39,6 +51,6 @@ export default {
     :validation-schema="validationSchema"
     :fields="fields"
     submit-button-text="Send Message"
-    @submit="contact"
+    @submit="onAddRequest"
   />
 </template>
