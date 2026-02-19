@@ -1,5 +1,5 @@
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
 import BaseCard from "@/components/ui/BaseCard.vue";
 import RequestItem from "@/components/requests/RequestItem.vue";
 
@@ -7,8 +7,7 @@ export default {
   name: "RequestsList",
   components: { RequestItem, BaseCard },
   computed: {
-    ...mapState("requests", ["requests"]),
-    ...mapGetters("requests", ["hasRequests"]),
+    ...mapGetters("requests", ["requestsByCoach", "hasRequestsByCoach"]),
   },
 };
 </script>
@@ -19,9 +18,9 @@ export default {
       <header>
         <h2>Requests List</h2>
       </header>
-      <ul v-if="hasRequests">
+      <ul v-if="hasRequestsByCoach">
         <request-item
-          v-for="{ id, email, message } in requests"
+          v-for="{ id, email, message } in requestsByCoach"
           :key="id"
           :email="email"
           :message="message"
