@@ -1,3 +1,5 @@
+import { addCoach } from "@/api/coaches";
+
 const ADD_COACH = "ADD_COACH";
 
 export default {
@@ -32,12 +34,17 @@ export default {
     },
   },
   actions: {
-    addCoach({ commit, rootState }, payload) {
-      const coach = {
+    async addCoach({ commit, rootState }, payload) {
+      const coachId = rootState.auth.userId;
+
+      await addCoach(payload, coachId);
+
+      const coachData = {
         ...payload,
-        id: rootState.auth.userId,
+        id: coachId,
       };
-      commit(ADD_COACH, coach);
+
+      commit(ADD_COACH, coachData);
     },
   },
   getters: {
