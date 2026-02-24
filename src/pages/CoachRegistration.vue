@@ -1,5 +1,6 @@
 <script>
 import { mapActions } from "vuex";
+import toast from "@/plugins/toast";
 import validationSchema from "@/utils/validation/schemas/coach.js";
 import BaseForm from "@/components/ui/BaseForm.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
@@ -46,9 +47,14 @@ export default {
   },
   methods: {
     ...mapActions("coaches", ["addCoach"]),
-    onAddCoach(coach) {
-      this.addCoach(coach);
-      this.$router.replace({ name: "coaches" });
+    async onAddCoach(coach) {
+      try {
+        await this.addCoach(coach);
+        this.$router.replace({ name: "coaches" });
+        toast.success("Coach registered successfully");
+      } catch (error) {
+        toast.error(error.message);
+      }
     },
   },
 };
