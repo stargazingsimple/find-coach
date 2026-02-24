@@ -1,5 +1,6 @@
 <script>
-import { mapGetters, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
+import toast from "@/plugins/toast";
 import CoachItem from "@/components/coaches/CoachItem.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
@@ -49,12 +50,23 @@ export default {
       });
     },
   },
+  created() {
+    this.fetchCoaches();
+  },
   methods: {
+    ...mapActions("coaches", ["getCoaches"]),
     changeFilter({ key, value }) {
       const option = this.filterOptions.find(({ id }) => id === key);
 
       if (option) {
         option.value = value;
+      }
+    },
+    async fetchCoaches() {
+      try {
+        await this.getCoaches();
+      } catch (error) {
+        toast.error(error.message);
       }
     },
   },
@@ -73,7 +85,7 @@ export default {
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline">Refresh</base-button>
+        <base-button mode="outline" @click="fetchCoaches">Refresh</base-button>
         <base-button v-if="!isCoach" link path="/register">
           Register as Coach
         </base-button>
