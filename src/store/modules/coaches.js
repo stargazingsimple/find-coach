@@ -22,7 +22,9 @@ export default {
     async addCoach({ commit, rootState }, payload) {
       const coachId = rootState.auth.userId;
 
-      await addCoach(payload, coachId);
+      const res = await addCoach(payload, coachId);
+
+      if (!res) return;
 
       const coachData = {
         ...payload,
@@ -30,11 +32,15 @@ export default {
       };
 
       commit(ADD_COACH, coachData);
+
+      return true;
     },
     async getCoaches({ commit }) {
-      const { data } = await getCoaches();
+      const res = await getCoaches();
 
-      const coaches = Object.entries(data).map(([key, value]) => ({
+      if (!res) return;
+
+      const coaches = Object.entries(res.data).map(([key, value]) => ({
         id: key,
         ...value,
       }));
@@ -43,7 +49,6 @@ export default {
     },
   },
   getters: {
-    hasCoaches: ({ coaches }) => !!coaches?.length,
     isCoach: ({ coaches }, _, { auth }) =>
       coaches.some(({ id }) => id === auth.userId),
   },

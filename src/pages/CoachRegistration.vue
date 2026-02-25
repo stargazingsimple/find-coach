@@ -48,13 +48,11 @@ export default {
   methods: {
     ...mapActions("coaches", ["addCoach"]),
     async onAddCoach(coach) {
-      try {
-        await this.addCoach(coach);
-        this.$router.replace({ name: "coaches" });
-        toast.success("Coach registered successfully");
-      } catch (error) {
-        toast.error(error.message);
-      }
+      const res = await this.addCoach(coach);
+      if (!res) return;
+
+      this.$router.replace({ name: "coaches" });
+      toast.success("Coach registered successfully");
     },
   },
 };
