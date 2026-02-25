@@ -1,6 +1,5 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
-import toast from "@/plugins/toast";
 import CoachItem from "@/components/coaches/CoachItem.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
 import BaseButton from "@/components/ui/BaseButton.vue";
@@ -37,7 +36,7 @@ export default {
   },
   computed: {
     ...mapState("coaches", ["coaches"]),
-    ...mapGetters("coaches", ["hasCoaches", "isCoach"]),
+    ...mapGetters("coaches", ["isCoach"]),
     activeFilters() {
       return this.filterOptions.reduce(
         (acc, { id, value }) => (value ? [...acc, id] : acc),
@@ -48,6 +47,9 @@ export default {
       return this.coaches.filter(({ areas }) => {
         return areas.some((area) => this.activeFilters.includes(area));
       });
+    },
+    hasCoaches() {
+      return this.filteredCoaches.length;
     },
   },
   created() {
@@ -62,12 +64,8 @@ export default {
         option.value = value;
       }
     },
-    async fetchCoaches() {
-      try {
-        await this.getCoaches();
-      } catch (error) {
-        toast.error(error.message);
-      }
+    fetchCoaches() {
+      this.getCoaches();
     },
   },
 };

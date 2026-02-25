@@ -1,5 +1,5 @@
-const INCREMENT_LOADER = "INCREMENT_LOADER";
-const DECREMENT_LOADER = "DECREMENT_LOADER";
+const INCREMENT_REQUESTS = "INCREMENT_REQUESTS";
+const DECREMENT_REQUESTS = "DECREMENT_REQUESTS";
 
 export default {
   namespaced: true,
@@ -9,20 +9,20 @@ export default {
     };
   },
   mutations: {
-    [INCREMENT_LOADER](state) {
+    [INCREMENT_REQUESTS](state) {
       state.requestsCount += 1;
     },
-    [DECREMENT_LOADER](state) {
+    [DECREMENT_REQUESTS](state) {
       state.requestsCount -= 1;
     },
   },
   actions: {
     showLoader({ commit }) {
-      commit(INCREMENT_LOADER);
+      commit(INCREMENT_REQUESTS);
     },
     hideLoader({ commit, state }) {
       if (state.requestsCount > 0) {
-        commit(DECREMENT_LOADER);
+        commit(DECREMENT_REQUESTS);
       }
     },
   },
