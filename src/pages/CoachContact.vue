@@ -1,5 +1,6 @@
 <script>
 import { mapActions } from "vuex";
+import toast from "@/plugins/toast";
 import validationSchema from "@/utils/validation/schemas/contact.js";
 import BaseForm from "@/components/ui/BaseForm.vue";
 
@@ -35,12 +36,12 @@ export default {
   },
   methods: {
     ...mapActions("requests", ["addRequest"]),
-    onAddRequest(formData) {
-      this.addRequest({
-        ...formData,
-        coachId: this.id,
-      });
+    async onAddRequest(formData) {
+      const res = await this.addRequest({ formData, coachId: this.id });
+      if (!res) return;
+
       this.$router.replace({ name: "coaches" });
+      toast.success("Message sent successfully");
     },
   },
 };
