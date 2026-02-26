@@ -40,7 +40,7 @@ export default {
 
       if (!res) return;
 
-      const coaches = Object.entries(res.data).map(([key, value]) => ({
+      const coaches = Object.entries(res.data || {}).map(([key, value]) => ({
         id: key,
         ...value,
       }));

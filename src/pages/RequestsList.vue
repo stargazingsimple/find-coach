@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import BaseCard from "@/components/ui/BaseCard.vue";
 import RequestItem from "@/components/requests/RequestItem.vue";
 
@@ -8,6 +8,12 @@ export default {
   components: { RequestItem, BaseCard },
   computed: {
     ...mapGetters("requests", ["requestsByCoach", "hasRequestsByCoach"]),
+  },
+  created() {
+    this.getRequests();
+  },
+  methods: {
+    ...mapActions("requests", ["getRequests"]),
   },
 };
 </script>
