@@ -53,7 +53,7 @@ export default {
     },
   },
   created() {
-    this.fetchCoaches();
+    this.fetchCoaches({ forceUpdate: false });
   },
   methods: {
     ...mapActions("coaches", ["getCoaches"]),
@@ -64,8 +64,8 @@ export default {
         option.value = value;
       }
     },
-    fetchCoaches() {
-      this.getCoaches();
+    fetchCoaches(payload) {
+      this.getCoaches(payload);
     },
   },
 };
@@ -83,7 +83,12 @@ export default {
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline" @click="fetchCoaches">Refresh</base-button>
+        <base-button
+          mode="outline"
+          @click="fetchCoaches({ forceUpdate: true })"
+        >
+          Refresh
+        </base-button>
         <base-button v-if="!isCoach" link path="/register">
           Register as Coach
         </base-button>
