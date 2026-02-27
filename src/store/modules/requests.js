@@ -49,9 +49,8 @@ export default {
     },
   },
   getters: {
-    requestsByCoach: ({ requests }, _, { auth }) => {
-      return requests.filter(({ coachId }) => coachId === auth.userId);
-    },
+    requestsByCoach: ({ requests }, _, { auth }) =>
+      requests.filter(({ coachId }) => coachId === auth.userId),
     hasRequestsByCoach: (_, { requestsByCoach }) => !!requestsByCoach?.length,
   },
 };

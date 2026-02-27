@@ -27,8 +27,6 @@ export default {
     },
   },
   getters: {
-    isLoading({ requestsCount }) {
-      return requestsCount > 0;
-    },
+    isLoading: ({ requestsCount }) => requestsCount > 0,
   },
 };
