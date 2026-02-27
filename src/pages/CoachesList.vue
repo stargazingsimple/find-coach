@@ -72,47 +72,49 @@ export default {
 </script>
 
 <template>
-  <base-checkbox-filter
-    :filter-options="filterOptions"
-    @change-filter="changeFilter"
-  >
-    <template #title>
-      <h2>Find Your Coach</h2>
-    </template>
-  </base-checkbox-filter>
-  <section>
-    <base-card>
-      <div class="controls">
-        <base-button
-          mode="outline"
-          @click="fetchCoaches({ forceUpdate: true })"
-        >
-          Refresh
-        </base-button>
-        <base-button v-if="!isCoach" link path="/register">
-          Register as Coach
-        </base-button>
-      </div>
-      <ul v-if="hasCoaches">
-        <coach-item
-          v-for="{
-            id,
-            firstName,
-            lastName,
-            areas,
-            hourlyRate,
-          } in filteredCoaches"
-          :key="id"
-          :id="id"
-          :first-name="firstName"
-          :last-name="lastName"
-          :areas="areas"
-          :hourly-rate="hourlyRate"
-        />
-      </ul>
-      <h3 v-else>Empty data</h3>
-    </base-card>
-  </section>
+  <div>
+    <base-checkbox-filter
+      :filter-options="filterOptions"
+      @change-filter="changeFilter"
+    >
+      <template #title>
+        <h2>Find Your Coach</h2>
+      </template>
+    </base-checkbox-filter>
+    <section>
+      <base-card>
+        <div class="controls">
+          <base-button
+            mode="outline"
+            @click="fetchCoaches({ forceUpdate: true })"
+          >
+            Refresh
+          </base-button>
+          <base-button v-if="!isCoach" link path="/register">
+            Register as Coach
+          </base-button>
+        </div>
+        <ul v-if="hasCoaches">
+          <coach-item
+            v-for="{
+              id,
+              firstName,
+              lastName,
+              areas,
+              hourlyRate,
+            } in filteredCoaches"
+            :key="id"
+            :id="id"
+            :first-name="firstName"
+            :last-name="lastName"
+            :areas="areas"
+            :hourly-rate="hourlyRate"
+          />
+        </ul>
+        <h3 v-else>Empty data</h3>
+      </base-card>
+    </section>
+  </div>
 </template>
 
 <style scoped>
