@@ -34,7 +34,7 @@ export default {
   <li>
     <h3>{{ firstName }} {{ lastName }}</h3>
     <h4>$ {{ hourlyRate }}/hour</h4>
-    <div>
+    <div class="d-flex ga-1">
       <base-badge v-for="area in areas" :key="area" :type="area" />
     </div>
     <div class="actions">

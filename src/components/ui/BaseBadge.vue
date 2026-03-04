@@ -11,36 +11,25 @@ export default {
     title() {
       return this.type.toUpperCase();
     },
+    config() {
+      switch (this.type) {
+        case "frontend":
+          return { color: "#3d008d", icon: "mdi-code-block-tags" };
+        case "backend":
+          return { color: "#71008d", icon: "mdi-language-java" };
+        default:
+          return { color: "#8d006e", icon: "mdi-account" };
+      }
+    },
   },
 };
 </script>
 
 <template>
-  <span class="badge" :class="type">{{ title }}</span>
+  <v-chip
+    :text="title"
+    :color="config.color"
+    :prepend-icon="config.icon"
+    variant="flat"
+  />
 </template>
-
-<style scoped>
-.badge {
-  background-color: #ccc;
-  color: #252525;
-  border-radius: 30px;
-  padding: 0.5rem 1.5rem;
-  display: inline-block;
-  margin-right: 0.5rem;
-}
-
-.frontend {
-  background-color: #3d008d;
-  color: white;
-}
-
-.backend {
-  background-color: #71008d;
-  color: white;
-}
-
-.career {
-  background-color: #8d006e;
-  color: white;
-}
-</style>
