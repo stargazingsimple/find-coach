@@ -2,14 +2,12 @@
 import { mapActions, mapGetters, mapState } from "vuex";
 import CoachItem from "@/components/coaches/CoachItem.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
-import BaseButton from "@/components/ui/BaseButton.vue";
 import BaseCheckboxFilter from "@/components/ui/BaseCheckboxFilter.vue";
 
 export default {
   name: "CoachesList",
   components: {
     BaseCheckboxFilter,
-    BaseButton,
     CoachItem,
     BaseCard,
   },
@@ -84,15 +82,15 @@ export default {
     <section>
       <base-card>
         <div class="controls">
-          <base-button
-            mode="outline"
+          <v-btn-secondary
+            text="Refresh"
             @click="fetchCoaches({ forceUpdate: true })"
-          >
-            Refresh
-          </base-button>
-          <base-button v-if="!isCoach" link path="/register">
-            Register as Coach
-          </base-button>
+          />
+          <v-btn-primary
+            v-if="!isCoach"
+            text="Register as Coach"
+            to="/register"
+          />
         </div>
         <ul v-if="hasCoaches">
           <coach-item

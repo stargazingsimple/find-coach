@@ -1,12 +1,11 @@
 <script>
 import { mapState } from "vuex";
 import BaseCard from "@/components/ui/BaseCard.vue";
-import BaseButton from "@/components/ui/BaseButton.vue";
 import BaseBadge from "@/components/ui/BaseBadge.vue";
 
 export default {
   name: "CoachDetails",
-  components: { BaseBadge, BaseButton, BaseCard },
+  components: { BaseBadge, BaseCard },
   props: {
     id: {
       type: String,
@@ -39,9 +38,11 @@ export default {
       <base-card>
         <header>
           <h2>Interested? Reach out now!</h2>
-          <base-button link :path="`/coaches/${id}/contact`"
-            >Contact</base-button
-          >
+          <v-btn-primary
+            text="Contact"
+            :to="`/coaches/${id}/contact`"
+            class="mb-2"
+          />
         </header>
         <router-view />
       </base-card>

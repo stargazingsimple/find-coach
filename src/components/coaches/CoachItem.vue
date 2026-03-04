@@ -1,10 +1,9 @@
 <script>
-import BaseButton from "@/components/ui/BaseButton.vue";
 import BaseBadge from "@/components/ui/BaseBadge.vue";
 
 export default {
   name: "CoachItem",
-  components: { BaseBadge, BaseButton },
+  components: { BaseBadge },
   props: {
     id: {
       type: String,
@@ -37,11 +36,9 @@ export default {
     <div class="d-flex ga-1">
       <base-badge v-for="area in areas" :key="area" :type="area" />
     </div>
-    <div class="actions">
-      <base-button link :path="`/coaches/${id}/contact`" mode="outline">
-        Contact
-      </base-button>
-      <base-button link :path="`/coaches/${id}`">View Details</base-button>
+    <div class="d-flex justify-end ga-2 mt-4">
+      <v-btn-secondary text="Contact" :to="`/coaches/${id}/contact`" />
+      <v-btn-primary text="View Details" :to="`/coaches/${id}`" />
     </div>
   </li>
 </template>
@@ -61,14 +58,5 @@ h3 {
 h3,
 h4 {
   margin: 0.5rem 0;
-}
-
-div {
-  margin: 0.5rem 0;
-}
-
-.actions {
-  display: flex;
-  justify-content: flex-end;
 }
 </style>

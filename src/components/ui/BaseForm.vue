@@ -1,9 +1,6 @@
 <script>
-import BaseButton from "@/components/ui/BaseButton.vue";
-
 export default {
   name: "BaseForm",
-  components: { BaseButton },
   props: {
     fields: {
       type: Array,
@@ -148,7 +145,7 @@ export default {
         </p>
       </div>
     </template>
-    <base-button>{{ submitButtonText }}</base-button>
+    <v-btn-primary :text="submitButtonText" class="mt-2" />
   </form>
 </template>
 
