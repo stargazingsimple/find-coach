@@ -3,11 +3,10 @@ import { mapActions } from "vuex";
 import toast from "@/plugins/toast";
 import validationSchema from "@/utils/validation/schemas/coach.js";
 import BaseForm from "@/components/ui/BaseForm.vue";
-import BaseCard from "@/components/ui/BaseCard.vue";
 
 export default {
   name: "CoachRegistration",
-  components: { BaseCard, BaseForm },
+  components: { BaseForm },
   data() {
     return {
       fields: [
@@ -60,7 +59,7 @@ export default {
 
 <template>
   <section>
-    <base-card>
+    <v-card-base>
       <h2>Register as a coach now!</h2>
       <base-form
         :fields="fields"
@@ -68,6 +67,6 @@ export default {
         submit-button-text="Register!"
         @submit="onAddCoach"
       />
-    </base-card>
+    </v-card-base>
   </section>
 </template>

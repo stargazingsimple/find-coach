@@ -1,7 +1,6 @@
 <script>
 import { mapActions, mapGetters, mapState } from "vuex";
 import CoachItem from "@/components/coaches/CoachItem.vue";
-import BaseCard from "@/components/ui/BaseCard.vue";
 import BaseCheckboxFilter from "@/components/ui/BaseCheckboxFilter.vue";
 
 export default {
@@ -9,7 +8,6 @@ export default {
   components: {
     BaseCheckboxFilter,
     CoachItem,
-    BaseCard,
   },
   data() {
     return {
@@ -80,7 +78,7 @@ export default {
       </template>
     </base-checkbox-filter>
     <section>
-      <base-card>
+      <v-card-base>
         <div class="controls">
           <v-btn-secondary
             text="Refresh"
@@ -110,7 +108,7 @@ export default {
           />
         </ul>
         <h3 v-else>Empty data</h3>
-      </base-card>
+      </v-card-base>
     </section>
   </div>
 </template>

@@ -1,9 +1,6 @@
 <script>
-import BaseCard from "@/components/ui/BaseCard.vue";
-
 export default {
   name: "BaseCheckboxFilter",
-  components: { BaseCard },
   props: {
     filterOptions: {
       type: Array,
@@ -21,7 +18,7 @@ export default {
 </script>
 
 <template>
-  <base-card>
+  <v-card-base>
     <slot name="title" />
     <span
       v-for="{ id, label } in filterOptions"
@@ -31,7 +28,7 @@ export default {
       <input type="checkbox" :id="id" checked @change="setFilterOption" />
       <label :for="id">{{ label }}</label>
     </span>
-  </base-card>
+  </v-card-base>
 </template>
 
 <style scoped>

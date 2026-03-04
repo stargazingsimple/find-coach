@@ -1,11 +1,10 @@
 <script>
 import { mapState } from "vuex";
-import BaseCard from "@/components/ui/BaseCard.vue";
 import BaseBadge from "@/components/ui/BaseBadge.vue";
 
 export default {
   name: "CoachDetails",
-  components: { BaseBadge, BaseCard },
+  components: { BaseBadge },
   props: {
     id: {
       type: String,
@@ -29,13 +28,13 @@ export default {
 <template>
   <div>
     <section>
-      <base-card>
+      <v-card-base>
         <h2>{{ selectedCoach.firstName }} {{ selectedCoach.lastName }}</h2>
         <h3>${{ selectedCoach.hourlyRate }}/hours</h3>
-      </base-card>
+      </v-card-base>
     </section>
     <section>
-      <base-card>
+      <v-card-base>
         <header>
           <h2>Interested? Reach out now!</h2>
           <v-btn-primary
@@ -45,17 +44,17 @@ export default {
           />
         </header>
         <router-view />
-      </base-card>
+      </v-card-base>
     </section>
     <section>
-      <base-card>
+      <v-card-base>
         <base-badge
           v-for="area in selectedCoach.areas"
           :key="area"
           :type="area"
         />
         <p>{{ selectedCoach.description }}</p>
-      </base-card>
+      </v-card-base>
     </section>
   </div>
 </template>

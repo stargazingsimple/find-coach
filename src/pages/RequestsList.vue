@@ -1,11 +1,10 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
-import BaseCard from "@/components/ui/BaseCard.vue";
 import RequestItem from "@/components/requests/RequestItem.vue";
 
 export default {
   name: "RequestsList",
-  components: { RequestItem, BaseCard },
+  components: { RequestItem },
   computed: {
     ...mapGetters("requests", ["requestsByCoach", "hasRequestsByCoach"]),
   },
@@ -20,7 +19,7 @@ export default {
 
 <template>
   <section>
-    <base-card>
+    <v-card-base>
       <header>
         <h2>Requests List</h2>
       </header>
@@ -33,7 +32,7 @@ export default {
         />
       </ul>
       <h3 v-else>You haven't received any requests yet!</h3>
-    </base-card>
+    </v-card-base>
   </section>
 </template>
 
