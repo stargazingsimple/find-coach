@@ -70,141 +70,62 @@ export default {
 </script>
 
 <template>
-  <form @submit.prevent="submitForm">
+  <v-form @submit.prevent="submitForm" class="d-flex flex-column ga-2">
     <template v-for="field in fields">
-      <div
+      <v-textarea
         v-if="field.type === 'textarea'"
-        class="form-control"
-        :class="{ invalid: this.validationData[field.id] }"
+        v-model.trim="formData[field.id]"
         :key="field.id"
-      >
-        <label :for="field.id">{{ field.label }}</label>
-        <textarea
-          rows="5"
-          :id="field.id"
-          v-model.trim="formData[field.id]"
-          @blur="validateField(field.id)"
-        />
-        <p v-if="this.validationData[field.id]" class="error-message">
-          {{ this.validationData[field.id] }}
-        </p>
-      </div>
-      <div
+        :label="field.label"
+        :error-messages="validationData[field.id]"
+        variant="solo"
+        @update:model-value="validateField(field.id)"
+      />
+      <v-number-input
         v-else-if="field.type === 'number'"
-        class="form-control"
-        :class="{ invalid: this.validationData[field.id] }"
+        v-model="formData[field.id]"
         :key="field.id"
-      >
-        <label :for="field.id">{{ field.label }}</label>
-        <input
-          :type="field.type"
-          :id="field.id"
-          v-model.number="formData[field.id]"
-          @blur="validateField(field.id)"
+        :label="field.label"
+        :error-messages="validationData[field.id]"
+        variant="solo"
+        @update:model-value="validateField(field.id)"
+      />
+      <div v-else-if="field.type === 'options'" :key="field.id">
+        <v-checkbox
+          v-for="{ id, label, value } in field.options"
+          v-model="formData[field.id]"
+          :key="id"
+          :label="label"
+          :value="value"
+          :error-messages="validationData[field.id]"
+          color="primary"
+          hide-details
+          density="compact"
+          @update:model-value="validateField(field.id)"
         />
-        <p v-if="this.validationData[field.id]" class="error-message">
-          {{ this.validationData[field.id] }}
-        </p>
       </div>
-      <div
-        v-else-if="field.type === 'options'"
-        class="form-control"
-        :class="{ invalid: this.validationData[field.id] }"
-        :key="field.id"
-      >
-        <h3>{{ field.label }}</h3>
-        <div v-for="{ id, label, value } in field.options" :key="id">
-          <input
-            type="checkbox"
-            :id="id"
-            :value="value"
-            v-model="formData[field.id]"
-            @blur="validateField(field.id)"
-          />
-          <label :for="id">{{ label }}</label>
-        </div>
-        <p v-if="this.validationData[field.id]" class="error-message">
-          {{ this.validationData[field.id] }}
-        </p>
-      </div>
-      <div
+      <v-text-field
         v-else
-        class="form-control"
-        :class="{ invalid: this.validationData[field.id] }"
+        v-model.trim="formData[field.id]"
         :key="field.id"
-      >
-        <label :for="field.id">{{ field.label }}</label>
-        <input
-          :type="field.type"
-          :id="field.id"
-          v-model.trim="formData[field.id]"
-          @blur="validateField(field.id)"
-        />
-        <p v-if="this.validationData[field.id]" class="error-message">
-          {{ this.validationData[field.id] }}
-        </p>
-      </div>
+        :label="field.label"
+        :error-messages="validationData[field.id]"
+        variant="solo"
+        @update:model-value="validateField(field.id)"
+      />
     </template>
-    <v-btn-primary :text="submitButtonText" class="mt-2" />
-  </form>
+    <v-btn-primary
+      :text="submitButtonText"
+      type="submit"
+      class="mt-2 w-100"
+      size="large"
+    />
+  </v-form>
 </template>
 
 <style scoped>
-.form-control {
-  margin: 0.5rem 0;
-}
-
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-input[type="checkbox"] + label {
-  font-weight: normal;
-  display: inline;
-  margin: 0 0 0 0.5rem;
-}
-
-input,
-textarea {
-  display: block;
-  width: 100%;
-  border: 1px solid #ccc;
-  font: inherit;
-}
-
-input:focus,
-textarea:focus {
-  background-color: #f0e6fd;
-  outline: none;
-  border-color: #3d008d;
-}
-
-input[type="checkbox"] {
-  display: inline;
-  width: auto;
-  border: none;
-}
-
-input[type="checkbox"]:focus {
-  outline: #3d008d solid 1px;
-}
-
 h3 {
   margin: 0.5rem 0;
   font-size: 1rem;
-}
-
-.error-message {
-  color: red;
-  margin: 4px 0 0;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.invalid input,
-.invalid textarea {
-  border: 1px solid red;
 }
 </style>
