@@ -1,7 +1,7 @@
 import "vuetify/styles";
-import "@/styles/fonts.css";
-import theme from "@/styles/theme";
-import aliases from "@/styles/aliases";
+import "@/styles/main.scss";
+import theme from "@/styles/utils/theme";
+import aliases from "@/styles/utils/aliases";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
