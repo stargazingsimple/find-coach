@@ -19,77 +19,28 @@ export default {
 </script>
 
 <template>
-  <header>
-    <nav>
-      <h1>
-        <router-link to="/">Find Coach</router-link>
-      </h1>
-      <ul>
-        <li v-for="{ path, title } in navigationItems" :key="title">
-          <router-link :to="path">{{ title }}</router-link>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <v-app-bar class="px-8" color="primary">
+    <template #prepend>
+      <v-app-bar-title>
+        <v-btn :ripple="false" to="/" variant="plain" class="opacity-100">
+          <template #prepend>
+            <v-icon icon="mdi-account-school" size="42" color="surface" />
+          </template>
+          <template #default>
+            <h1 class="text-headline-small text-uppercase">find coach</h1>
+          </template>
+        </v-btn>
+      </v-app-bar-title>
+      <div class="d-flex ga-4 ml-12">
+        <v-btn
+          v-for="{ path, title } in navigationItems"
+          :key="title"
+          :to="path"
+          :text="title"
+          class="text-none"
+          slim
+        />
+      </div>
+    </template>
+  </v-app-bar>
 </template>
-
-<style scoped>
-header {
-  width: 100%;
-  height: 5rem;
-  background-color: #3d008d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-header a {
-  text-decoration: none;
-  color: #f391e3;
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid transparent;
-}
-
-a:active,
-a:hover,
-a.router-link-active {
-  border: 1px solid #f391e3;
-}
-
-h1 {
-  margin: 0;
-}
-
-h1 a {
-  color: white;
-  margin: 0;
-}
-
-h1 a:hover,
-h1 a:active,
-h1 a.router-link-active {
-  border-color: transparent;
-}
-
-header nav {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-li {
-  margin: 0 0.5rem;
-}
-</style>
