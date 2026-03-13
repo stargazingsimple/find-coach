@@ -30,33 +30,41 @@ export default {
 </script>
 
 <template>
-  <li>
-    <h3>{{ firstName }} {{ lastName }}</h3>
-    <h4>$ {{ hourlyRate }}/hour</h4>
-    <div class="d-flex ga-1">
-      <base-badge v-for="area in areas" :key="area" :type="area" />
-    </div>
-    <div class="d-flex justify-end ga-2 mt-4">
-      <v-btn-secondary text="Contact" :to="`/coaches/${id}/contact`" />
-      <v-btn-primary text="View Details" :to="`/coaches/${id}`" />
-    </div>
-  </li>
+  <v-card max-width="344">
+    <v-card-text>
+      <div class="d-flex align-center justify-space-between mb-2">
+        <h3 class="text-title-large">{{ firstName }} {{ lastName }}</h3>
+        <v-avatar color="secondary" icon="mdi-account" />
+      </div>
+      <h4 class="text-title-medium mb-2">$ {{ hourlyRate }}/hour</h4>
+      <div class="d-flex justify-end ga-1">
+        <base-badge v-for="area in areas" :key="area" :type="area" />
+      </div>
+    </v-card-text>
+    <v-card-actions class="pa-0 ga-0">
+      <v-btn
+        :to="`/coaches/${id}/contact`"
+        rounded="0"
+        class="w-50 border-t"
+        variant="text"
+        text="Contact"
+      >
+        <template #prepend>
+          <v-icon icon="mdi-email" size="small" />
+        </template>
+      </v-btn>
+      <v-divider vertical />
+      <v-btn
+        :to="`/coaches/${id}`"
+        rounded="0"
+        class="w-50 border-t"
+        variant="text"
+        text="View Details"
+      >
+        <template #prepend>
+          <v-icon icon="mdi-information" size="small" />
+        </template>
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
-
-<style scoped>
-li {
-  margin: 1rem 0;
-  border: 1px solid #424242;
-  border-radius: 12px;
-  padding: 1rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-h3,
-h4 {
-  margin: 0.5rem 0;
-}
-</style>

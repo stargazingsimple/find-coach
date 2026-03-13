@@ -1,12 +1,13 @@
 @use "vuetify/settings" with (
   // Chip
   $chip-border-radius: 30px,
-  $chip-font-size: 1rem,
-  $chip-height: 40px,
+  $chip-font-size: 0.7rem,
+  $chip-height: 24px,
 
   // Button
   $button-font-size: 1rem,
 
   // Card
-  $card-border-radius: 12px
+  $card-border-radius: 12px,
+  $card-actions-min-height: auto
 );

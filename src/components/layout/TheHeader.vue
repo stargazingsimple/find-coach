@@ -24,10 +24,10 @@ export default {
       <v-app-bar-title>
         <v-btn :ripple="false" to="/" variant="plain" class="opacity-100">
           <template #prepend>
-            <v-icon icon="mdi-account-school" size="42" color="surface" />
+            <v-icon icon="mdi-human-male-board" size="42" color="surface" />
           </template>
           <template #default>
-            <h1 class="text-headline-small text-uppercase">find coach</h1>
+            <h1 class="text-headline-medium text-uppercase">find coach</h1>
           </template>
         </v-btn>
       </v-app-bar-title>
