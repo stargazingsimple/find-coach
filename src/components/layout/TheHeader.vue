@@ -20,7 +20,7 @@ export default {
 
 <template>
   <v-app-bar class="px-8" color="primary">
-    <template #prepend>
+    <v-container class="d-flex align-center pa-0">
       <v-app-bar-title>
         <v-btn :ripple="false" to="/" variant="plain" class="opacity-100">
           <template #prepend>
@@ -31,7 +31,7 @@ export default {
           </template>
         </v-btn>
       </v-app-bar-title>
-      <div class="d-flex ga-4 ml-12">
+      <div class="d-flex ga-4">
         <v-btn
           v-for="{ path, title } in navigationItems"
           :key="title"
@@ -41,6 +41,6 @@ export default {
           slim
         />
       </div>
-    </template>
+    </v-container>
   </v-app-bar>
 </template>
