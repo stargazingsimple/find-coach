@@ -117,7 +117,13 @@ export default {
           />
         </v-col>
       </v-row>
-      <h3 v-else>Empty data</h3>
+      <v-empty-state
+        v-else
+        icon="mdi-account-off"
+        headline="No coaches yet"
+        title="Nothing to show here"
+        text="Coaches profiles will appear here once they become available"
+      />
     </v-card-base>
   </div>
 </template>

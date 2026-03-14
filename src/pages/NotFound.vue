@@ -5,13 +5,14 @@ export default {
 </script>
 
 <template>
-  <section>
-    <v-card-base>
-      <h2>Page not found</h2>
-      <p>
-        This page could not be found - maybe check out all our
-        <router-link to="/coaches">coaches</router-link>
-      </p>
-    </v-card-base>
-  </section>
+  <v-card-base>
+    <v-empty-state
+      icon="mdi-file-remove-outline"
+      headline="Page not found"
+      title="We can't seem to find the page you're looking for"
+      text="Check the URL or return to the homepage"
+      action-text="Return"
+      to="/coaches"
+    />
+  </v-card-base>
 </template>

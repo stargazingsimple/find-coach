@@ -20,18 +20,26 @@ export default {
 <template>
   <section>
     <v-card-base>
-      <header>
-        <h2>Requests List</h2>
-      </header>
-      <ul v-if="hasRequestsByCoach">
-        <request-item
-          v-for="{ id, email, message } in requestsByCoach"
-          :key="id"
-          :email="email"
-          :message="message"
-        />
-      </ul>
-      <h3 v-else>You haven't received any requests yet!</h3>
+      <div v-if="hasRequestsByCoach">
+        <header>
+          <h2>Requests List</h2>
+        </header>
+        <ul>
+          <request-item
+            v-for="{ id, email, message } in requestsByCoach"
+            :key="id"
+            :email="email"
+            :message="message"
+          />
+        </ul>
+      </div>
+      <v-empty-state
+        v-else
+        icon="mdi-handshake-outline"
+        headline="No requests yet"
+        title="No collaboration requests available"
+        text="Collaboration requests will appear here when they are received"
+      />
     </v-card-base>
   </section>
 </template>
