@@ -15,33 +15,22 @@ export default {
 </script>
 
 <template>
-  <li>
-    <div>
-      <a :href="`mailto:${email}`">{{ email }}</a>
-      <p>{{ message }}</p>
-    </div>
-  </li>
+  <v-card>
+    <template #prepend>
+      <div>
+        <v-icon icon="mdi-email" class="mr-2" />
+        <v-btn
+          :ripple="false"
+          :href="`mailto:${email}`"
+          class="opacity-100 px-0 text-title-medium font-weight-bold text-primary"
+          variant="plain"
+        >
+          {{ email }}
+        </v-btn>
+      </div>
+    </template>
+    <v-card-text class="text-title-medium font-weight-bold">
+      {{ message }}
+    </v-card-text>
+  </v-card>
 </template>
-
-<style scoped>
-li {
-  margin: 1rem 0;
-  border: 1px solid #ccc;
-  padding: 1rem;
-}
-
-a {
-  color: #3d008d;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-a:hover,
-a:active {
-  color: #8d007a;
-}
-
-p {
-  margin: 0.5rem 0 0 0;
-}
-</style>

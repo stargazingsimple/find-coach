@@ -18,45 +18,26 @@ export default {
 </script>
 
 <template>
-  <section>
-    <v-card-base>
-      <div v-if="hasRequestsByCoach">
-        <header>
-          <h2>Requests List</h2>
-        </header>
-        <ul>
-          <request-item
-            v-for="{ id, email, message } in requestsByCoach"
-            :key="id"
-            :email="email"
-            :message="message"
-          />
-        </ul>
+  <v-card-base>
+    <div v-if="hasRequestsByCoach">
+      <h2 class="text-headline-small font-weight-bold text-center mb-4">
+        Requests List
+      </h2>
+      <div class="d-flex flex-column ga-4">
+        <request-item
+          v-for="{ id, email, message } in requestsByCoach"
+          :key="id"
+          :email="email"
+          :message="message"
+        />
       </div>
-      <v-empty-state
-        v-else
-        icon="mdi-handshake-outline"
-        headline="No requests yet"
-        title="No collaboration requests available"
-        text="Collaboration requests will appear here when they are received"
-      />
-    </v-card-base>
-  </section>
+    </div>
+    <v-empty-state
+      v-else
+      icon="mdi-handshake-outline"
+      headline="No requests yet"
+      title="No collaboration requests available"
+      text="Collaboration requests will appear here when they are received"
+    />
+  </v-card-base>
 </template>
-
-<style scoped>
-header {
-  text-align: center;
-}
-
-ul {
-  list-style: none;
-  margin: 2rem auto;
-  padding: 0;
-  max-width: 30rem;
-}
-
-h3 {
-  text-align: center;
-}
-</style>
