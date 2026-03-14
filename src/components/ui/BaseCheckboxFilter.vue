@@ -18,19 +18,24 @@ export default {
 </script>
 
 <template>
-  <v-card-base>
-    <slot name="title" />
-    <div class="d-flex ga-2">
-      <v-checkbox
-        v-for="{ id, label, value } in filterOptions"
-        :key="id"
-        :label="label"
-        :model-value="value"
-        color="primary"
-        hide-details
-        density="compact"
-        @update:model-value="setFilterOption({ id, checked: $event })"
-      />
+  <v-card-base class="d-flex justify-space-between">
+    <div>
+      <slot name="title" />
+      <div class="d-flex ga-2">
+        <v-checkbox
+          v-for="{ id, label, value } in filterOptions"
+          :key="id"
+          :label="label"
+          :model-value="value"
+          color="primary"
+          hide-details
+          density="compact"
+          @update:model-value="setFilterOption({ id, checked: $event })"
+        />
+      </div>
+    </div>
+    <div>
+      <slot name="actions" />
     </div>
   </v-card-base>
 </template>

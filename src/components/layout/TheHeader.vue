@@ -20,7 +20,7 @@ export default {
 
 <template>
   <v-app-bar class="px-8" color="primary">
-    <v-container class="d-flex align-center pa-0">
+    <v-container class="d-flex align-center">
       <v-app-bar-title>
         <v-btn :ripple="false" to="/" variant="plain" class="opacity-100">
           <template #prepend>

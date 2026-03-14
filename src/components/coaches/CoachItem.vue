@@ -33,7 +33,9 @@ export default {
   <v-card max-width="344">
     <v-card-text>
       <div class="d-flex align-center justify-space-between mb-2">
-        <h3 class="text-title-large">{{ firstName }} {{ lastName }}</h3>
+        <h3 class="text-title-large font-weight-bold">
+          {{ firstName }} {{ lastName }}
+        </h3>
         <v-avatar color="secondary" icon="mdi-account" />
       </div>
       <h4 class="text-title-medium mb-2">$ {{ hourlyRate }}/hour</h4>

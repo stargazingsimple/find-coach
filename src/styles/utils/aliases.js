@@ -17,9 +17,7 @@ const aliases = {
     },
     VCardBase: {
       variant: "outlined",
-      maxWidth: "40rem",
-      style:
-        "margin: 2rem auto; padding: 1rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);",
+      style: "padding: 1rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);",
     },
   },
 };

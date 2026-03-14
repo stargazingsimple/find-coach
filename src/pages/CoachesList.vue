@@ -71,61 +71,53 @@ export default {
   <div>
     <base-checkbox-filter
       :filter-options="filterOptions"
+      class="mb-4"
       @change-filter="changeFilter"
     >
       <template #title>
-        <h2>Find Your Coach</h2>
+        <h2 class="text-headline-small font-weight-bold">Find Your Coach</h2>
       </template>
-    </base-checkbox-filter>
-    <section>
-      <v-card-base>
-        <div class="controls">
+      <template #actions>
+        <div class="d-flex flex-column ga-3">
           <v-btn-secondary
             text="Refresh"
+            min-width="150"
             @click="fetchCoaches({ forceUpdate: true })"
           />
           <v-btn-primary
             v-if="!isCoach"
             text="Register as Coach"
+            min-width="150"
             to="/register"
           />
         </div>
-        <ul v-if="hasCoaches">
+      </template>
+    </base-checkbox-filter>
+    <v-card-base>
+      <v-row v-if="hasCoaches">
+        <v-col
+          v-for="{
+            id,
+            firstName,
+            lastName,
+            areas,
+            hourlyRate,
+          } in filteredCoaches"
+          :key="id"
+          xl="3"
+          lg="4"
+          md="6"
+        >
           <coach-item
-            v-for="{
-              id,
-              firstName,
-              lastName,
-              areas,
-              hourlyRate,
-            } in filteredCoaches"
-            :key="id"
             :id="id"
             :first-name="firstName"
             :last-name="lastName"
             :areas="areas"
             :hourly-rate="hourlyRate"
           />
-        </ul>
-        <h3 v-else>Empty data</h3>
-      </v-card-base>
-    </section>
+        </v-col>
+      </v-row>
+      <h3 v-else>Empty data</h3>
+    </v-card-base>
   </div>
 </template>
-
-<style scoped>
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.controls {
-  display: flex;
-  justify-content: space-between;
-}
-
-h2 {
-  margin: 0.5rem 0;
-}
-</style>
