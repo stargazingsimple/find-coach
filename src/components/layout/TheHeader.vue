@@ -22,7 +22,7 @@ export default {
   <v-app-bar class="px-8" color="primary">
     <v-container class="d-flex align-center">
       <v-app-bar-title>
-        <v-btn :ripple="false" to="/" variant="plain" class="opacity-100 px-0">
+        <v-btn :ripple="false" to="/" variant="plain" class="opacity-100 px-1">
           <template #prepend>
             <v-icon icon="mdi-human-male-board" size="42" color="surface" />
           </template>

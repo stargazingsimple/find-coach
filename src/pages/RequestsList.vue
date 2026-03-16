@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-  <v-card-base>
+  <v-card-base max-width="720" class="mx-auto">
     <div v-if="hasRequestsByCoach">
       <h2 class="text-headline-small font-weight-bold text-center mb-4">
         Requests List

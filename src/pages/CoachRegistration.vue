@@ -58,15 +58,15 @@ export default {
 </script>
 
 <template>
-  <section>
-    <v-card-base>
-      <h2>Register as a coach now!</h2>
-      <base-form
-        :fields="fields"
-        :validation-schema="validationSchema"
-        submit-button-text="Register!"
-        @submit="onAddCoach"
-      />
-    </v-card-base>
-  </section>
+  <v-card-base max-width="720" class="mx-auto">
+    <h2 class="text-headline-small font-weight-bold mb-4">
+      Register as a coach now!
+    </h2>
+    <base-form
+      :fields="fields"
+      :validation-schema="validationSchema"
+      submit-button-text="Register!"
+      @submit="onAddCoach"
+    />
+  </v-card-base>
 </template>
