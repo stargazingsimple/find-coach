@@ -1,5 +1,5 @@
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import BaseBadge from "@/components/ui/BaseBadge.vue";
 
 export default {
@@ -19,14 +19,20 @@ export default {
   computed: {
     ...mapState("coaches", ["coaches"]),
   },
-  created() {
+  async created() {
+    if (!this.coaches.length) {
+      await this.getCoaches({ forceUpdate: false });
+    }
     this.selectedCoach = this.coaches.find(({ id }) => id === this.id);
+  },
+  methods: {
+    ...mapActions("coaches", ["getCoaches"]),
   },
 };
 </script>
 
 <template>
-  <div>
+  <div v-if="selectedCoach">
     <v-card-base max-width="720" class="mx-auto mb-4">
       <h2 class="text-headline-small font-weight-bold mb-2">
         {{ selectedCoach.firstName }} {{ selectedCoach.lastName }}
@@ -58,4 +64,12 @@ export default {
       <p class="text-title-medium">{{ selectedCoach.description }}</p>
     </v-card-base>
   </div>
+  <v-card-base v-else max-width="720" class="mx-auto">
+    <v-empty-state
+      icon="mdi-account-off"
+      headline="No coach yet"
+      title="Nothing to show here"
+      text="Coach profile will appear here once they become available"
+    />
+  </v-card-base>
 </template>
