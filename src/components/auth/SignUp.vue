@@ -1,4 +1,5 @@
 <script>
+import { mapActions } from "vuex";
 import validationSchema from "@/utils/validation/schemas/signUp";
 import BaseForm from "@/components/ui/BaseForm.vue";
 
@@ -42,8 +43,12 @@ export default {
     },
   },
   methods: {
-    signUp(formData) {
-      console.log(formData);
+    ...mapActions("auth", ["signUp"]),
+    async submit(formData) {
+      const res = await this.signUp(formData);
+      if (res) {
+        this.$router.replace({ name: "sign-in" });
+      }
     },
   },
 };
@@ -61,7 +66,7 @@ export default {
       :fields="fields"
       submit-button-text="register"
       class="mb-8"
-      @submit="signUp"
+      @submit="submit"
     />
     <p class="text-title-medium text-center">Already have an account?</p>
     <v-btn

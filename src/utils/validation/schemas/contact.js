@@ -2,8 +2,11 @@ import { object, string } from "yup";
 
 const schema = object({
   email: string()
-    .required("Email is required")
-    .email("Please enter a valid email address"),
+    .matches(
+      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+      "Please enter a valid email address",
+    )
+    .required("Email is required"),
   message: string().required("Message is required"),
 });
 

@@ -2,7 +2,9 @@ import axios from "axios";
 import store from "@/store";
 import toast from "@/plugins/toast";
 
-const HTTP = axios.create({
+const API_KEY = "AIzaSyD2wrn0GQOrFW3KS9XF1Su6_c7A1qz-6zA";
+
+export const HTTP = axios.create({
   baseURL:
     "https://personal-81e60-default-rtdb.europe-west1.firebasedatabase.app/",
   timeout: 10000,
@@ -30,4 +32,10 @@ HTTP.interceptors.response.use(
   },
 );
 
-export default HTTP;
+export const AUTH = axios.create({
+  baseURL: "https://identitytoolkit.googleapis.com/v1/",
+  timeout: 10000,
+  params: {
+    key: API_KEY,
+  },
+});

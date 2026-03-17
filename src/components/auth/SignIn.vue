@@ -1,4 +1,5 @@
 <script>
+import { mapActions } from "vuex";
 import validationSchema from "@/utils/validation/schemas/signIn";
 import BaseForm from "@/components/ui/BaseForm.vue";
 
@@ -27,8 +28,9 @@ export default {
     },
   },
   methods: {
-    signIn(formData) {
-      console.log(formData);
+    ...mapActions("auth", ["signIn"]),
+    submit(formData) {
+      this.signIn(formData);
     },
   },
 };
@@ -46,7 +48,7 @@ export default {
       :fields="fields"
       class="mb-8"
       submit-button-text="sign in"
-      @submit="signIn"
+      @submit="submit"
     />
     <p class="text-title-medium text-center">Don't have an account yet?</p>
     <v-btn

@@ -1,4 +1,4 @@
-import HTTP from "@/api/index";
+import { HTTP } from "@/api/index";
 
 export const addRequest = async (payload, coachId) => {
   return HTTP.post(`/requests/${coachId}.json`, payload);
