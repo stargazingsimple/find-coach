@@ -22,11 +22,10 @@ export default {
         <v-btn
           :ripple="false"
           :href="`mailto:${email}`"
+          :text="email"
           class="opacity-100 px-0 text-title-medium font-weight-bold text-primary"
           variant="plain"
-        >
-          {{ email }}
-        </v-btn>
+        />
       </div>
     </template>
     <v-card-text class="text-title-medium font-weight-bold">

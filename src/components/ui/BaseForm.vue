@@ -20,6 +20,8 @@ export default {
     return {
       formData: {},
       validationData: {},
+      showPassword: false,
+      showPasswordConfirm: false,
     };
   },
   created() {
@@ -105,11 +107,36 @@ export default {
         />
       </div>
       <v-text-field
-        v-else
-        v-model.trim="formData[field.id]"
+        v-else-if="field.type === 'password'"
+        v-model="formData[field.id]"
         :key="field.id"
         :label="field.label"
         :error-messages="validationData[field.id]"
+        :type="showPassword ? 'text' : 'password'"
+        :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+        variant="solo"
+        @update:model-value="validateField(field.id)"
+        @click:append-inner="showPassword = !showPassword"
+      />
+      <v-text-field
+        v-else-if="field.type === 'passwordConfirm'"
+        v-model="formData[field.id]"
+        :key="field.id"
+        :label="field.label"
+        :error-messages="validationData[field.id]"
+        :type="showPasswordConfirm ? 'text' : 'password'"
+        :append-inner-icon="showPasswordConfirm ? 'mdi-eye' : 'mdi-eye-off'"
+        variant="solo"
+        @update:model-value="validateField(field.id)"
+        @click:append-inner="showPasswordConfirm = !showPasswordConfirm"
+      />
+      <v-text-field
+        v-else
+        v-model="formData[field.id]"
+        :key="field.id"
+        :label="field.label"
+        :error-messages="validationData[field.id]"
+        :type="field.type"
         variant="solo"
         @update:model-value="validateField(field.id)"
       />
@@ -117,7 +144,7 @@ export default {
     <v-btn-primary
       :text="submitButtonText"
       type="submit"
-      class="mt-2 w-100"
+      class="mt-2 w-100 text-uppercase"
       size="large"
     />
   </v-form>
