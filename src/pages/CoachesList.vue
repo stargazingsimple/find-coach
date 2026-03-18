@@ -32,6 +32,7 @@ export default {
   },
   computed: {
     ...mapState("coaches", ["coaches"]),
+    ...mapState("auth", ["userId"]),
     ...mapGetters("coaches", ["isCoach"]),
     activeFilters() {
       return this.filterOptions.reduce(
@@ -39,8 +40,14 @@ export default {
         [],
       );
     },
+    coachesWithoutCurrentUser() {
+      return this.coaches.filter(({ id }) => id !== this.userId);
+    },
     filteredCoaches() {
-      return this.coaches.filter(({ areas }) => {
+      const coaches = this.isCoach
+        ? this.coachesWithoutCurrentUser
+        : this.coaches;
+      return coaches.filter(({ areas }) => {
         return areas.some((area) => this.activeFilters.includes(area));
       });
     },

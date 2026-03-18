@@ -1,4 +1,6 @@
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "TheHeader",
   data() {
@@ -14,6 +16,15 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapGetters("coaches", ["isCoach"]),
+    navigationItemsWithPermission() {
+      return this.navigationItems.map((item) => ({
+        ...item,
+        permission: item.path === "/coaches" || this.isCoach,
+      }));
+    },
   },
 };
 </script>
@@ -32,14 +43,18 @@ export default {
         </v-btn>
       </v-app-bar-title>
       <div class="d-flex ga-4">
-        <v-btn
-          v-for="{ path, title } in navigationItems"
+        <template
+          v-for="{ path, title, permission } in navigationItemsWithPermission"
           :key="title"
-          :to="path"
-          :text="title"
-          class="text-none"
-          slim
-        />
+        >
+          <v-btn
+            v-if="permission"
+            :to="path"
+            :text="title"
+            class="text-none"
+            slim
+          />
+        </template>
       </div>
     </v-container>
   </v-app-bar>

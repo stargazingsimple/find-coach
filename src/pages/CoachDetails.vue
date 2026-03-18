@@ -18,6 +18,10 @@ export default {
   },
   computed: {
     ...mapState("coaches", ["coaches"]),
+    ...mapState("auth", ["userId"]),
+    isCurrentUser() {
+      return this.userId === this.id;
+    },
   },
   async created() {
     if (!this.coaches.length) {
@@ -41,7 +45,7 @@ export default {
         ${{ selectedCoach.hourlyRate }}/hours
       </h3>
     </v-card-base>
-    <v-card-base max-width="720" class="mx-auto mb-4">
+    <v-card-base v-if="!isCurrentUser" max-width="720" class="mx-auto mb-4">
       <h2 class="text-headline-small font-weight-bold mb-2">
         Interested? Reach out now!
       </h2>

@@ -33,9 +33,9 @@ export default {
       return true;
     },
     async getRequests({ commit, rootState }) {
-      const coachId = rootState.auth.userId;
+      const { userId: coachId, token } = rootState.auth;
 
-      const res = await getRequests(coachId);
+      const res = await getRequests({ coachId, token });
 
       if (!res) return;
 

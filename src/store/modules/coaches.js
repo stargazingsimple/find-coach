@@ -27,9 +27,9 @@ export default {
   },
   actions: {
     async addCoach({ commit, rootState }, payload) {
-      const coachId = rootState.auth.userId;
+      const { userId: coachId, token } = rootState.auth;
 
-      const res = await addCoach(payload, coachId);
+      const res = await addCoach(payload, { coachId, token });
 
       if (!res) return;
 
