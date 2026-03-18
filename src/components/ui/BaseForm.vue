@@ -81,6 +81,7 @@ export default {
         :label="field.label"
         :error-messages="validationData[field.id]"
         variant="solo"
+        autocomplete="off"
         @update:model-value="validateField(field.id)"
       />
       <v-number-input
@@ -90,6 +91,7 @@ export default {
         :label="field.label"
         :error-messages="validationData[field.id]"
         variant="solo"
+        autocomplete="off"
         @update:model-value="validateField(field.id)"
       />
       <div v-else-if="field.type === 'options'" :key="field.id">
@@ -115,6 +117,7 @@ export default {
         :type="showPassword ? 'text' : 'password'"
         :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
         variant="solo"
+        autocomplete="off"
         @update:model-value="validateField(field.id)"
         @click:append-inner="showPassword = !showPassword"
       />
@@ -127,6 +130,7 @@ export default {
         :type="showPasswordConfirm ? 'text' : 'password'"
         :append-inner-icon="showPasswordConfirm ? 'mdi-eye' : 'mdi-eye-off'"
         variant="solo"
+        autocomplete="off"
         @update:model-value="validateField(field.id)"
         @click:append-inner="showPasswordConfirm = !showPasswordConfirm"
       />
@@ -138,6 +142,7 @@ export default {
         :error-messages="validationData[field.id]"
         :type="field.type"
         variant="solo"
+        autocomplete="off"
         @update:model-value="validateField(field.id)"
       />
     </template>
