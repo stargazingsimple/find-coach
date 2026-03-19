@@ -18,4 +18,8 @@ export default {
       component: SignUp,
     },
   ],
+  meta: {
+    needAuth: false,
+    title: "Authentication",
+  },
 };

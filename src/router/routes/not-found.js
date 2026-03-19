@@ -4,4 +4,8 @@ export default {
   name: "not-found",
   path: "/:pathMatch(.*)*",
   component: NotFound,
+  meta: {
+    needAuth: false,
+    title: "Not found",
+  },
 };

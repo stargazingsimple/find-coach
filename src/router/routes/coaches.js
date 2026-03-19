@@ -11,6 +11,10 @@ export default [
     name: "coaches",
     path: "/coaches",
     component: CoachesList,
+    meta: {
+      needAuth: true,
+      title: "Coaches",
+    },
   },
   {
     name: "coach",
@@ -25,5 +29,9 @@ export default [
       },
     ],
     props: true,
+    meta: {
+      needAuth: true,
+      title: "Coach details",
+    },
   },
 ];

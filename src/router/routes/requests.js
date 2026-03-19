@@ -4,4 +4,8 @@ export default {
   name: "requests",
   path: "/requests",
   component: RequestsList,
+  meta: {
+    needAuth: true,
+    title: "Requests",
+  },
 };

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import TheHeader from "@/components/layout/TheHeader.vue";
 
 export default {
@@ -25,6 +25,20 @@ export default {
   components: { TheHeader },
   computed: {
     ...mapGetters("loader", ["isLoading"]),
+    ...mapGetters("auth", ["isAuthenticated"]),
+  },
+  watch: {
+    isAuthenticated(value) {
+      if (!value) {
+        this.$router.replace({ name: "sign-in" });
+      }
+    },
+  },
+  created() {
+    this.autologin();
+  },
+  methods: {
+    ...mapActions("auth", ["autologin"]),
   },
 };
 </script>

@@ -29,8 +29,11 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["signIn"]),
-    submit(formData) {
-      this.signIn(formData);
+    async submit(formData) {
+      const res = await this.signIn(formData);
+      if (res) {
+        this.$router.replace({ name: "coaches" });
+      }
     },
   },
 };
