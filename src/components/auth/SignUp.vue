@@ -55,7 +55,7 @@ export default {
 </script>
 
 <template>
-  <v-card-base>
+  <v-card-base max-width="480">
     <h1
       class="text-headline-medium text-uppercase font-weight-bold text-center mb-4"
     >

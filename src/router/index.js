@@ -20,11 +20,14 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
+  document.title = `Find Coach | ${to.meta.title}`;
+
   if (to.meta.needAuth && !store.getters["auth/isAuthenticated"]) {
     next("/auth/sign-in");
   } else if (
-    to.meta.title === "Authentication" &&
-    store.getters["auth/isAuthenticated"]
+    (to.meta.title === "Authentication" &&
+      store.getters["auth/isAuthenticated"]) ||
+    (to.meta.title === "Requests" && !store.getters["coaches/isCoach"])
   ) {
     next("/coaches");
   } else {

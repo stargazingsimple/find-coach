@@ -7,5 +7,6 @@ export default {
   meta: {
     needAuth: true,
     title: "Requests",
+    layout: "main",
   },
 };

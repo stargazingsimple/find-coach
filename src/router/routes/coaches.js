@@ -14,6 +14,7 @@ export default [
     meta: {
       needAuth: true,
       title: "Coaches",
+      layout: "main",
     },
   },
   {
@@ -31,7 +32,8 @@ export default [
     props: true,
     meta: {
       needAuth: true,
-      title: "Coach details",
+      title: "Coach Details",
+      layout: "main",
     },
   },
 ];

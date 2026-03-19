@@ -6,6 +6,7 @@ export default {
   component: CoachRegistration,
   meta: {
     needAuth: true,
-    title: "Coach registration",
+    title: "Coach Registration",
+    layout: "main",
   },
 };

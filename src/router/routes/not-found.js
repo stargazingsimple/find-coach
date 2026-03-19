@@ -6,6 +6,7 @@ export default {
   component: NotFound,
   meta: {
     needAuth: false,
-    title: "Not found",
+    title: "Not Found",
+    layout: "main",
   },
 };

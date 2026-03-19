@@ -1,20 +1,21 @@
 <script>
+import TheHeader from "@/components/layout/TheHeader.vue";
+
 export default {
-  name: "UserAuth",
+  name: "TheMainLayout",
+  components: { TheHeader },
 };
 </script>
 
 <template>
-  <v-row class="bg-white align-center px-4">
-    <v-col cols="9">
-      <v-img src="@/assets/background.png" />
-    </v-col>
-    <v-col cols="3">
+  <the-header />
+  <v-main>
+    <v-container>
       <router-view #default="{ Component }">
         <v-fade-transition hide-on-leave>
           <component :is="Component" />
         </v-fade-transition>
       </router-view>
-    </v-col>
-  </v-row>
+    </v-container>
+  </v-main>
 </template>
