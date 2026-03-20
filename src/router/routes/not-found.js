@@ -1,9 +1,7 @@
-import NotFound from "@/pages/NotFound.vue";
-
 export default {
   name: "not-found",
   path: "/:pathMatch(.*)*",
-  component: NotFound,
+  component: () => import("@/pages/NotFound.vue"),
   meta: {
     needAuth: false,
     title: "Not Found",

@@ -1,7 +1,3 @@
-import CoachesList from "@/pages/CoachesList.vue";
-import CoachDetails from "@/pages/CoachDetails.vue";
-import CoachContact from "@/pages/CoachContact.vue";
-
 export default [
   {
     path: "/",
@@ -10,7 +6,7 @@ export default [
   {
     name: "coaches",
     path: "/coaches",
-    component: CoachesList,
+    component: () => import("@/pages/CoachesList.vue"),
     meta: {
       needAuth: true,
       title: "Coaches",
@@ -20,12 +16,12 @@ export default [
   {
     name: "coach",
     path: "/coaches/:id",
-    component: CoachDetails,
+    component: () => import("@/pages/CoachDetails.vue"),
     children: [
       {
         name: "coach-contact",
         path: "contact",
-        component: CoachContact,
+        component: () => import("@/pages/CoachContact.vue"),
         props: true,
       },
     ],

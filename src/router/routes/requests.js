@@ -1,9 +1,7 @@
-import RequestsList from "@/pages/RequestsList.vue";
-
 export default {
   name: "requests",
   path: "/requests",
-  component: RequestsList,
+  component: () => import("@/pages/RequestsList.vue"),
   meta: {
     needAuth: true,
     title: "Requests",

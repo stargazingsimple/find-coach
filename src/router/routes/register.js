@@ -1,9 +1,7 @@
-import CoachRegistration from "@/pages/CoachRegistration.vue";
-
 export default {
   name: "register",
   path: "/register",
-  component: CoachRegistration,
+  component: () => import("@/pages/CoachRegistration.vue"),
   meta: {
     needAuth: true,
     title: "Coach Registration",
