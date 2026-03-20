@@ -1,8 +1,10 @@
 <script>
 import { mapGetters } from "vuex";
+import TheAvatar from "@/components/layout/TheAvatar.vue";
 
 export default {
   name: "TheHeader",
+  components: { TheAvatar },
   data() {
     return {
       navigationItems: [
@@ -42,7 +44,7 @@ export default {
           </template>
         </v-btn>
       </v-app-bar-title>
-      <div class="d-flex ga-4">
+      <div class="d-flex ga-4 mr-4">
         <template
           v-for="{ path, title, permission } in navigationItemsWithPermission"
           :key="title"
@@ -56,6 +58,7 @@ export default {
           />
         </template>
       </div>
+      <the-avatar />
     </v-container>
   </v-app-bar>
 </template>
