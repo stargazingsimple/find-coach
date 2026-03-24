@@ -40,7 +40,7 @@ export default {
 </script>
 
 <template>
-  <v-card-base max-width="480">
+  <v-card-base max-width="480" class="d-flex flex-column">
     <h1
       class="text-headline-medium text-uppercase font-weight-bold text-center mb-4"
     >
@@ -55,9 +55,10 @@ export default {
     />
     <p class="text-title-medium text-center">Don't have an account yet?</p>
     <v-btn
+      :ripple="false"
       variant="plain"
       color="primary"
-      class="text-uppercase text-title-medium d-block mx-auto"
+      class="text-uppercase text-title-medium"
       text="sign up"
       to="/auth/sign-up"
     />
