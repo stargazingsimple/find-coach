@@ -25,9 +25,9 @@ router.beforeEach((to, _, next) => {
   if (to.meta.needAuth && !store.getters["auth/isAuthenticated"]) {
     next("/auth/sign-in");
   } else if (
-    (to.meta.title === "Authentication" &&
+    ((to.name === "sign-in" || to.name === "sign-up") &&
       store.getters["auth/isAuthenticated"]) ||
-    (to.meta.title === "Requests" && !store.getters["coaches/isCoach"])
+    (to.name === "requests" && !store.getters["coaches/isCoach"])
   ) {
     next("/coaches");
   } else {

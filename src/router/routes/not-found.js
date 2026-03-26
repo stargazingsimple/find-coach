@@ -3,7 +3,7 @@ export default {
   path: "/:pathMatch(.*)*",
   component: () => import("@/pages/NotFound.vue"),
   meta: {
-    needAuth: false,
+    needAuth: true,
     title: "Not Found",
     layout: "main",
   },
