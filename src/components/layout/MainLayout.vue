@@ -1,8 +1,8 @@
 <script>
-import TheHeader from "@/components/layout/TheHeader.vue";
+import TheHeader from "@/components/navigation/TheHeader.vue";
 
 export default {
-  name: "TheMainLayout",
+  name: "MainLayout",
   components: { TheHeader },
 };
 </script>

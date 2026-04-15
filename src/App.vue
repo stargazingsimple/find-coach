@@ -1,7 +1,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
-import TheMainLayout from "@/components/layout/TheMainLayout.vue";
-import TheAuthLayout from "@/components/layout/TheAuthLayout.vue";
+import MainLayout from "@/components/layout/MainLayout.vue";
+import AuthLayout from "@/components/layout/AuthLayout.vue";
 
 export default {
   name: "App",
@@ -9,7 +9,7 @@ export default {
     ...mapGetters("loader", ["isLoading"]),
     ...mapGetters("auth", ["isAuthenticated"]),
     layout() {
-      return this.$route.meta.layout === "main" ? TheMainLayout : TheAuthLayout;
+      return this.$route.meta.layout === "main" ? MainLayout : AuthLayout;
     },
   },
   watch: {

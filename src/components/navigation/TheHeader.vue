@@ -1,6 +1,6 @@
 <script>
 import { mapGetters } from "vuex";
-import TheAvatar from "@/components/layout/TheAvatar.vue";
+import TheAvatar from "@/components/navigation/TheAvatar.vue";
 
 export default {
   name: "TheHeader",
