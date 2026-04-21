@@ -1,6 +1,6 @@
 <script>
 import { mapActions } from "vuex";
-import validationSchema from "@/utils/validation/schemas/signUp";
+import validationSchema from "@/utils/validation/schemas/sign-up";
 import BaseForm from "@/components/ui/BaseForm.vue";
 
 export default {
